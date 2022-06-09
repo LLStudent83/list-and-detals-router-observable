@@ -1,14 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { combineEpics, createEpicMiddleware } from 'redux-observable';
-import searchSliceReducer from './features/search/searchSlice';
-import { changeSearchEpic, serchSkillsApic } from './epics';
+import pricesSliceReducer from './features/prices/pricesSlice';
+import detailsPriceSliceReducer from './features/detailsePrice/detailsePriceSlice';
+import { fetchPricesApic, fetchDetailsPriceApic } from './epics';
 
 const epicMiddleware = createEpicMiddleware();
-const rootEpic = combineEpics(changeSearchEpic, serchSkillsApic);
+const rootEpic = combineEpics(fetchPricesApic, fetchDetailsPriceApic);
 
 export const store = configureStore({
   reducer: {
-    searchSliceReducer,
+    pricesSliceReducer,
+    detailsPriceSliceReducer,
   },
   middleware: [epicMiddleware],
 });
