@@ -30,20 +30,22 @@ export const detailsPriceSlice = createSlice({
   name: 'detailsPrice',
   initialState,
   reducers: {
-    progressRequestDet: (state) => ({
-      ...state, loading: true, error: '',
-    }),
+    progressRequestDet: (state) => {
+      state.loading = true;
+      state.error = '';
+    },
 
     searchFailureDet: (state, action: PayloadAction<{ message: string }>) => {
       const { message } = action.payload;
-      return { ...state, loading: false, error: message };
+      state.error = message;
+      state.loading = false;
     },
 
     searchSuccessDet: (state, action: PayloadAction<DetailsPrice>) => {
       const { detailsPrice } = action.payload;
-      return {
-        ...state, detailsPrice, loading: false, error: '',
-      };
+      state.detailsPrice = detailsPrice;
+      state.loading = false;
+      state.error = '';
     },
   },
 });

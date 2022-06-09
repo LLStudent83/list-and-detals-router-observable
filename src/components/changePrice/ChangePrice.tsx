@@ -16,6 +16,12 @@ export default function ChangePrice(): JSX.Element {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const params = useParams();
+  const initialPrice = {
+    id: null,
+    name: '',
+    price: null,
+    content: '',
+  };
 
   useEffect(() => {
     dispatch(progressRequestDet(params.id));
@@ -36,7 +42,7 @@ export default function ChangePrice(): JSX.Element {
 
   const hendelClickCancel = (): void => {
     navigate('/services');
-    dispatch(searchSuccessDet({ detailsPrice: {} }));
+    dispatch(searchSuccessDet({ detailsPrice: initialPrice }));
   };
 
   const loader = loading ? <Loader /> : null;

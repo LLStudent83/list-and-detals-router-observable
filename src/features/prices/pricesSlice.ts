@@ -40,10 +40,6 @@ export const pricesSlice = createSlice({
       state.error = null;
       state.loading = false;
     },
-
-    default: (state) => {
-      state;
-    },
   },
 });
 
