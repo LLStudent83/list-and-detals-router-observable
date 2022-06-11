@@ -1,13 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 type Price = {
-  id: number,
+  id: number | null,
   name: string,
-  price: number,
+  price: number | null,
   content: string,
 };
 
-type DetailsPrice = {
+type InitialStateType = {
   detailsPrice: Price,
   loading: Boolean,
   error: string,
@@ -20,7 +20,7 @@ const initialPrice = {
   content: '',
 };
 
-const initialState = {
+const initialState: InitialStateType = {
   detailsPrice: initialPrice,
   loading: false,
   error: '',
@@ -41,7 +41,7 @@ export const detailsPriceSlice = createSlice({
       state.loading = false;
     },
 
-    searchSuccessDet: (state, action: PayloadAction<DetailsPrice>) => {
+    searchSuccessDet: (state, action: PayloadAction<InitialStateType>) => {
       const { detailsPrice } = action.payload;
       state.detailsPrice = detailsPrice;
       state.loading = false;
